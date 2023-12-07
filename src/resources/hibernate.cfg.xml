@@ -10,12 +10,18 @@
 			<property name="connection.username">root</property>
 			<property name="connection.password">1234</property>
 			<property name="dialect">org.hibernate.dialect.MySQL8Dialect</property>
-			<property name="hbm2ddl.auto">create</property>
 			<!-- <property name="hbm2ddl.auto">update</property> -->
+			<property name="hbm2ddl.auto">create</property>
 			<property name="show_sql">true</property>
 			<!-- <property name="format_sql">true</property> -->
 			<property name="hibernate.current_session_context_class">thread</property>
+			
+			<!-- mapping classes -->
 			<mapping class="entity.Student" />
 			<mapping class="entity.Address" />
+			<mapping class="entity.onetoone.Question" />
+			<mapping class="entity.onetoone.Answer" />
+			<mapping class="entity.onetomany.Book" />
+			<mapping class="entity.onetomany.Author" />
 		</session-factory>
 	</hibernate-configuration>
