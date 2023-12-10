@@ -19,9 +19,14 @@
 			<!-- mapping classes -->
 			<mapping class="entity.Student" />
 			<mapping class="entity.Address" />
+			
 			<mapping class="entity.onetoone.Question" />
 			<mapping class="entity.onetoone.Answer" />
+			
 			<mapping class="entity.onetomany.Book" />
 			<mapping class="entity.onetomany.Author" />
+			
+			<mapping class="entity.manytomany.Employee" />
+			<mapping class="entity.manytomany.Project" />
 		</session-factory>
 	</hibernate-configuration>

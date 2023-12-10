@@ -12,6 +12,8 @@ import org.hibernate.cfg.Configuration;
 import entity.Address;
 import entity.Certificate;
 import entity.Student;
+import entity.manytomany.Employee;
+import entity.manytomany.Project;
 import entity.onetomany.Author;
 import entity.onetomany.Book;
 import entity.onetoone.Answer;
@@ -61,21 +63,40 @@ public class HibernateAppMain {
 //		session.save(address);
 //		session.save(question);
 //		session.save(answer);
-		session.save(book1);
-		session.save(book2);
-		session.save(book3);
-		session.save(book4);
-		session.save(book5);
-		session.save(author1);
-		session.save(author2);
-		System.out.println("Fetching objects...");
-//		Student fetchedStudent = session.load(Student.class, 106);
-		Student fetchedStudent = session.get(Student.class, 101);
-		System.out.println(fetchedStudent);
-//		Address fetchedAddress = session.load(Address.class, 1);
-		Address fetchedAddress = session.get(Address.class, 1);
-		System.out.println(fetchedAddress);
-		
+//
+//		session.save(book1);
+//		session.save(book2);
+//		session.save(book3);
+//		session.save(book4);
+//		session.save(book5);
+//		session.save(author1);
+//		session.save(author2);
+//		System.out.println("Fetching objects...");
+////		Student fetchedStudent = session.load(Student.class, 106);
+//		Student fetchedStudent = session.get(Student.class, 101);
+//		System.out.println(fetchedStudent);
+////		Address fetchedAddress = session.load(Address.class, 1);
+//		Address fetchedAddress = session.get(Address.class, 1);
+//		System.out.println(fetchedAddress);
+//
+		//
+		Employee employee1 = new Employee(101,"Aman",null);
+		Employee employee2 = new Employee(102,"Kumar",null);
+		Project project1 = new Project(201,"TruEye",null);
+		Project project2 = new Project(202,"TruLic",null);
+		List<Employee> employees= new ArrayList<>();
+		employees.add(employee1);
+		employees.add(employee2);
+		List<Project> projects = new ArrayList<>();
+		projects.add(project1);
+		projects.add(project2);
+		employee1.setProjects(projects);
+		project2.setEmployees(employees);
+
+		session.save(employee1);
+		session.save(employee2);
+		session.save(project1);
+		session.save(project2);
 		transaction.commit();
 		session.close();
 	}
