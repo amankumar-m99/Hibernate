@@ -1,5 +1,9 @@
 package appmain;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Date;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -28,9 +32,23 @@ public class HibernateAppMain {
 	}
 
 	private static void insertOneUser(Session session) {
-		User user = new User(101, "Email_Sample", "pass_sample");
+		User user = new User("Email_Sample", "pass_sample");
+		user.setDateOfCreation(new Date());
+		user.setAge(24);
+		user.setProfilePic(getSampleImage());
 		Transaction transaction = session.beginTransaction();
 		session.save(user);
 		transaction.commit();
+	}
+
+	private static byte[] getSampleImage() {
+		try (FileInputStream fis = new FileInputStream("src/resources/sample_image.png")) {
+			byte[] data = new byte[fis.available()];
+			fis.read(data);
+			return data;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }
