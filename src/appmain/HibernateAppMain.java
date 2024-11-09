@@ -9,8 +9,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
-import entity.address.Address;
-import entity.user.User;
+import entity.e001user.User;
+import entity.e002address.Address;
 
 public class HibernateAppMain {
 	public static void main(String[] args) {
