@@ -25,7 +25,7 @@ public class HibernateAppMain {
 			Session currentSession = factory.getCurrentSession();
 			System.out.println(currentSession);
 			insertOneUser(currentSession);
-//			fetchUsers(factory.openSession());
+			fetchUsers(factory.openSession());
 			currentSession.close();
 			factory.close();
 		}
