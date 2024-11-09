@@ -9,8 +9,12 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
+import com.mysql.cj.x.protobuf.MysqlxConnection.Capabilities;
+
 import entity.e001user.User;
 import entity.e002address.Address;
+import entity.e003onetoone.Capital;
+import entity.e003onetoone.Country;
 
 public class HibernateAppMain {
 	public static void main(String[] args) {
@@ -26,6 +30,7 @@ public class HibernateAppMain {
 			System.out.println(currentSession);
 			insertOneUser(currentSession);
 			fetchUsers(factory.openSession());
+			insertCountryAndCapital(currentSession);
 			currentSession.close();
 			factory.close();
 		}
@@ -64,5 +69,16 @@ public class HibernateAppMain {
 		user = session.get(User.class, 2L);
 		System.out.println(user);
 		session.close();
+	}
+
+	private static void insertCountryAndCapital(Session session) {
+		Capital capital = new Capital(1, "New Delhi", 2001);
+		Country country = new Country(1, "India", "ind", 91);
+		country.setCapital(capital);
+		capital.setCountry(country);
+		Transaction transaction = session.beginTransaction();
+		session.save(country);
+		session.save(capital);
+		transaction.commit();
 	}
 }
