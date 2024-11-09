@@ -9,6 +9,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
+import entity.address.Address;
 import entity.user.User;
 
 public class HibernateAppMain {
@@ -18,14 +19,17 @@ public class HibernateAppMain {
 				//.configure() //use this if config file name is standard and also present at sibling to package
 				.configure("resources/hibernate.cfg.xml") //use this if config file name is not standard or not present at sibling to package
 				.buildSessionFactory();
+
 		if(factory.isOpen()) {
 			System.out.println("Factory is open.");
 			Session currentSession = factory.getCurrentSession();
 			System.out.println(currentSession);
 			insertOneUser(currentSession);
+//			fetchUsers(factory.openSession());
 			currentSession.close();
 			factory.close();
 		}
+
 		if(factory.isClosed()) {
 			System.out.println("Factory is closed.");
 		}
@@ -35,6 +39,7 @@ public class HibernateAppMain {
 		User user = new User("Email_Sample", "pass_sample");
 		user.setDateOfCreation(new Date());
 		user.setAge(24);
+		user.setAddress(new Address("Noida", "U.P.", "Sample_Landmark", 201301));
 		user.setProfilePic(getSampleImage());
 		Transaction transaction = session.beginTransaction();
 		session.save(user);
@@ -50,5 +55,14 @@ public class HibernateAppMain {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	private static void fetchUsers(Session session) {
+		User user;
+		user = session.load(User.class, 1L);
+		System.out.println(user);
+		user = session.get(User.class, 2L);
+		System.out.println(user);
+		session.close();
 	}
 }

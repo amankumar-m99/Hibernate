@@ -12,6 +12,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
+import entity.address.Address;
+
 @Entity()
 //@Table(name = "user_table")
 public class User {
@@ -27,6 +29,8 @@ public class User {
 
 	@Transient // no column will be created for this field in database
 	private int age;
+
+	private Address address;
 
 	@Lob
 	private byte[] profilePic;
@@ -86,6 +90,20 @@ public class User {
 	}
 	public void setDateOfCreation(Date dateOfCreation) {
 		this.dateOfCreation = dateOfCreation;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", email=" + email + ", password=" + password + ", dateOfCreation=" + dateOfCreation
+				+ "]";
 	}
 
 }
