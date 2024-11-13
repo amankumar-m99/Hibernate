@@ -9,12 +9,10 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
-import com.mysql.cj.x.protobuf.MysqlxConnection.Capabilities;
-
-import entity.e001user.User;
-import entity.e002address.Address;
-import entity.e003onetoone.Capital;
-import entity.e003onetoone.Country;
+import entity.e001.Address;
+import entity.e001.User;
+import entity.e002onetoone.Capital;
+import entity.e002onetoone.Country;
 
 public class HibernateAppMain {
 	public static void main(String[] args) {

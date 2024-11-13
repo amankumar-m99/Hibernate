@@ -17,7 +17,7 @@
 			<property name="hibernate.current_session_context_class">thread</property>
 			
 			<!-- mapping classes -->
-			<mapping class="entity.e001user.User" />
+			<mapping class="entity.e001.User" />
 			<mapping class="entity.e003onetoone.Country"/>
 			<mapping class="entity.e003onetoone.Capital"/>
 		</session-factory>

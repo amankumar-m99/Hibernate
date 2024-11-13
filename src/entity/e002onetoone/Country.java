@@ -1,4 +1,4 @@
-package entity.e003onetoone;
+package entity.e002onetoone;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

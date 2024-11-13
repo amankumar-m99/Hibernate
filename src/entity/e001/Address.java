@@ -1,4 +1,4 @@
-package entity.e002address;
+package entity.e001;
 
 import javax.persistence.Embeddable;
 

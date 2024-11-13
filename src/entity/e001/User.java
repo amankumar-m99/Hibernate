@@ -1,4 +1,4 @@
-package entity.e001user;
+package entity.e001;
 
 import java.util.Date;
 
@@ -11,8 +11,6 @@ import javax.persistence.Lob;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
-
-import entity.e002address.Address;
 
 @Entity()
 //@Table(name = "user_table")
