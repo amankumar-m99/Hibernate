@@ -28,7 +28,7 @@ public class HibernateAppMain {
 			System.out.println(currentSession);
 			insertOneUser(currentSession);
 			fetchUsers(factory.openSession());
-			insertCountryAndCapital(currentSession);
+			insertCountryAndCapital(factory.openSession());
 			currentSession.close();
 			factory.close();
 		}
