@@ -22,5 +22,7 @@
 			<mapping class="entity.e001.User" />
 			<mapping class="entity.e002onetoone.Country"/>
 			<mapping class="entity.e002onetoone.Capital"/>
+			<mapping class="entity.e003onetomany.Author"/>
+			<mapping class="entity.e003onetomany.Book"/>
 		</session-factory>
 	</hibernate-configuration>
