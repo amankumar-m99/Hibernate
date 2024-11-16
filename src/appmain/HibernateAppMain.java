@@ -31,11 +31,11 @@ public class HibernateAppMain {
 			System.out.println("Factory is open.");
 			Session currentSession = factory.getCurrentSession();
 			System.out.println(currentSession);
-			insertOneUser(currentSession);
-			fetchUsers(factory.openSession());
-			insertCountryAndCapital(factory.openSession());
-			insertAuthorAndBooks(factory.openSession());
-			fetchAuthorAndBooks(factory.openSession());
+			insertOneEntity(currentSession);
+			fetchOneEntity(factory.openSession());
+			insertOneToOneEntity(factory.openSession());
+			insertOneToManyEntity(factory.openSession());
+			fetchOneToManyEntity(factory.openSession());
 			currentSession.close();
 			factory.close();
 		}
@@ -45,7 +45,7 @@ public class HibernateAppMain {
 		}
 	}
 
-	private static void insertOneUser(Session session) {
+	private static void insertOneEntity(Session session) {
 		User user = new User("Email_Sample", "pass_sample");
 		user.setDateOfCreation(new Date());
 		user.setAge(24);
@@ -67,7 +67,7 @@ public class HibernateAppMain {
 		return null;
 	}
 
-	private static void fetchUsers(Session session) {
+	private static void fetchOneEntity(Session session) {
 		User user;
 		user = session.load(User.class, 1L);
 		System.out.println(user);
@@ -76,7 +76,7 @@ public class HibernateAppMain {
 		session.close();
 	}
 
-	private static void insertCountryAndCapital(Session session) {
+	private static void insertOneToOneEntity(Session session) {
 		Capital capital = new Capital(1, "New Delhi", 2001);
 		Country country = new Country(1, "India", "ind", 91);
 		country.setCapital(capital);
@@ -87,7 +87,7 @@ public class HibernateAppMain {
 		transaction.commit();
 	}
 
-	private static void insertAuthorAndBooks(Session session) {
+	private static void insertOneToManyEntity(Session session) {
 		Author authorA = new Author("Aman", "K", "Maurya", new Date());
 		Author authorN = new Author("Nawal", "K", "Maurya", new Date());
 		Book book1 = new Book("isbn1", "Book1 by A", 2024, authorA);
@@ -108,7 +108,7 @@ public class HibernateAppMain {
 		transaction.commit();
 	}
 
-	private static void fetchAuthorAndBooks(Session session) {
+	private static void fetchOneToManyEntity(Session session) {
 		long id = 1;
 		System.out.println("Fetching author with id " + id + "....");
 		Author author = session.get(Author.class, id);
