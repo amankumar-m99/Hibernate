@@ -24,5 +24,7 @@
 			<mapping class="entity.e002onetoone.Capital"/>
 			<mapping class="entity.e003onetomany.Author"/>
 			<mapping class="entity.e003onetomany.Book"/>
+			<mapping class="entity.e004manytomany.Actor"/>
+			<mapping class="entity.e004manytomany.Movie"/>
 		</session-factory>
 	</hibernate-configuration>

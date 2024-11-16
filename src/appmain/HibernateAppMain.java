@@ -18,6 +18,8 @@ import entity.e002onetoone.Capital;
 import entity.e002onetoone.Country;
 import entity.e003onetomany.Author;
 import entity.e003onetomany.Book;
+import entity.e004manytomany.Actor;
+import entity.e004manytomany.Movie;
 
 public class HibernateAppMain {
 	public static void main(String[] args) {
@@ -36,6 +38,7 @@ public class HibernateAppMain {
 			insertOneToOneEntity(factory.openSession());
 			insertOneToManyEntity(factory.openSession());
 			fetchOneToManyEntity(factory.openSession());
+			insertManyToManyEntity(factory.openSession());
 			currentSession.close();
 			factory.close();
 		}
@@ -117,5 +120,22 @@ public class HibernateAppMain {
 		for(Book book:author.getBooks()) {
 			System.out.println(book);
 		}
+	}
+
+	private static void insertManyToManyEntity(Session session) {
+		Actor a1 = new Actor("Irrfan", new Date());
+		Actor a2 = new Actor("Deepika", new Date());
+		Movie m1 = new Movie("Madari", 220, 2018);
+		Movie m2 = new Movie("Piku", 220, 2019);
+		a1.setMovies(Arrays.asList(m1, m2));
+		a2.setMovies(Arrays.asList(m2));
+		m1.setActors(Arrays.asList(a1));
+		m2.setActors(Arrays.asList(a1,a2));
+		Transaction transaction = session.beginTransaction();
+		session.save(a1);
+		session.save(a2);
+		session.save(m1);
+		session.save(m2);
+		transaction.commit();
 	}
 }
