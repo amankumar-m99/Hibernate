@@ -17,6 +17,8 @@
 			<property name="hibernate.current_session_context_class">thread</property>
 			
 			<!-- mapping classes -->
+			<!--
+			-->
 			<mapping class="entity.e001.User" />
 			<mapping class="entity.e002onetoone.Country"/>
 			<mapping class="entity.e002onetoone.Capital"/>
