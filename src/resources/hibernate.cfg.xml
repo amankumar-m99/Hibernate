@@ -26,5 +26,8 @@
 			<mapping class="entity.e003onetomany.Book"/>
 			<mapping class="entity.e004manytomany.Actor"/>
 			<mapping class="entity.e004manytomany.Movie"/>
+
+			<!-- mapping resources -->
+			<mapping resource="entity/e005xmlmapping/Person.hbm.xml"></mapping>
 		</session-factory>
 	</hibernate-configuration>
