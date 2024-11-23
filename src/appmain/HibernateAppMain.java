@@ -49,7 +49,7 @@ public class HibernateAppMain {
 		oneToManyService.fetchOneToManyEntity(session);
 		session.close();
 	}
-	
+
 	private static void manyToManyEntity(Session session) {
 		ManyToManyService manyToManyService = new ManyToManyService();
 		manyToManyService.insertManyToManyEntity(session);
