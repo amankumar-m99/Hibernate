@@ -26,6 +26,5 @@ public class ManyToManyService {
 		session.save(m1);
 		session.save(m2);
 		transaction.commit();
-		session.close();
 	}
 }

@@ -21,7 +21,6 @@ public class UserService {
 		Transaction transaction = session.beginTransaction();
 		session.save(user);
 		transaction.commit();
-		session.close();
 	}
 
 	private byte[] getSampleImage() {
@@ -37,11 +36,12 @@ public class UserService {
 
 	public void fetchUser(Session session) {
 		User user;
+		// using load() method
 		user = session.load(User.class, 1L);
 		System.out.println(user);
+		//using get() method
 		user = session.get(User.class, 2L);
 		System.out.println(user);
-		session.close();
 	}
 
 }

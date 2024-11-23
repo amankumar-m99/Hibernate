@@ -32,7 +32,6 @@ public class OneToManyService {
 		session.save(book3);
 		session.save(book4);
 		transaction.commit();
-		session.close();
 	}
 
 	public void fetchOneToManyEntity(Session session) {

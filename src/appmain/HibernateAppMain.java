@@ -33,21 +33,25 @@ public class HibernateAppMain {
 		UserService userService = new UserService();
 		userService.insertUser(session);
 		userService.fetchUser(session);
+		session.close();
 	}
 
 	private static void oneToOneEntity(Session session) {
 		OneToOneService oneToOneService = new OneToOneService();
 		oneToOneService.insertOneToOneEntity(session);
+		session.close();
 	}
 
 	private static void oneToManyEntity(Session session) {
 		OneToManyService oneToManyService = new OneToManyService();
 		oneToManyService.insertOneToManyEntity(session);
 		oneToManyService.fetchOneToManyEntity(session);
+		session.close();
 	}
 	
 	private static void manyToManyEntity(Session session) {
 		ManyToManyService manyToManyService = new ManyToManyService();
 		manyToManyService.insertManyToManyEntity(session);
+		session.close();
 	}
 }

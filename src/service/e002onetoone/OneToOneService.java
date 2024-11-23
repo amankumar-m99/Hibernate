@@ -17,6 +17,5 @@ public class OneToOneService {
 		session.save(country);
 		session.save(capital);
 		transaction.commit();
-		session.close();
 	}
 }
