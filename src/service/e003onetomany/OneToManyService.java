@@ -35,12 +35,30 @@ public class OneToManyService {
 	}
 
 	public void fetchOneToManyEntity(Session session) {
-		long id = 1;
-		System.out.println("Fetching author with id " + id + "....");
-		Author author = session.get(Author.class, id);
+		eagerLoad(session);
+		lazyLoad(session);
+	}
+
+	private void eagerLoad(Session session) {
+		session.clear();
+		// eager load
+		Author author = session.get(Author.class, 1L);//query fired here but without books
 		System.out.println("Fetched author:" + author.getFirstName());
 		System.out.println("Fetching books of this author...");
-		for(Book book:author.getBooks()) {
+		Set<Book> books = author.getBooks();//query for books not fired here
+		for(Book book: books) {//query for books fired here, on first iteration of loop
+			System.out.println(book);
+		}
+	}
+
+	private void lazyLoad(Session session) {
+		session.clear();
+		// lazy load
+		Author author = session.load(Author.class, 1L);// query not fired here
+		System.out.println("Fetched author:" + author.getFirstName());//query fired here but without books
+		System.out.println("Fetching books of this author...");
+		Set<Book> books = author.getBooks();//query for books not fired here
+		for(Book book: books) {//query for books fired here, on first iteration of loop
 			System.out.println(book);
 		}
 	}

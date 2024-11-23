@@ -18,4 +18,19 @@ public class OneToOneService {
 		session.save(capital);
 		transaction.commit();
 	}
+
+	public void fetchOneToOneEntity(Session session) {
+		session.clear();
+		Country country;
+		Capital capital;
+		// eager load
+		country = session.get(Country.class, 1L);// query fired here
+		System.out.println(country.getName());
+		session.clear();
+		// lazy load
+		country = session.load(Country.class, 1L);// query not fired here
+		System.out.println(country.getName());// query fired here
+		capital = country.getCapital();
+		System.out.println(capital.getName());
+	}
 }

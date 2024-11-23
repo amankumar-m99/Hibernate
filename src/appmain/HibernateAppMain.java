@@ -39,6 +39,7 @@ public class HibernateAppMain {
 	private static void oneToOneEntity(Session session) {
 		OneToOneService oneToOneService = new OneToOneService();
 		oneToOneService.insertOneToOneEntity(session);
+		oneToOneService.fetchOneToOneEntity(session);
 		session.close();
 	}
 
@@ -52,6 +53,7 @@ public class HibernateAppMain {
 	private static void manyToManyEntity(Session session) {
 		ManyToManyService manyToManyService = new ManyToManyService();
 		manyToManyService.insertManyToManyEntity(session);
+		manyToManyService.fetchManyToManyEntity(session);
 		session.close();
 	}
 }

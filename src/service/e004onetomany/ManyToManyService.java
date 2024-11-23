@@ -2,6 +2,7 @@ package service.e004onetomany;
 
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -26,5 +27,52 @@ public class ManyToManyService {
 		session.save(m1);
 		session.save(m2);
 		transaction.commit();
+	}
+
+	public void fetchManyToManyEntity(Session session) {
+		eagerLoadMoviesFromActor(session);
+		eagerLoadActorsFromMovie(session);
+		lazyLoadMoviesFromActor(session);
+		lazyLoadActorsFromMovie(session);
+	}
+
+	private void eagerLoadMoviesFromActor(Session session) {
+		session.clear();
+		Actor actor = session.get(Actor.class, 1L);//query fired here but without movies
+		System.out.println("Actor:"+actor.getName());
+		List<Movie> movies = actor.getMovies();
+		for(Movie movie:movies) {//query for movies fired here, on first iteration of loop
+			System.out.println(movie.getTitle());
+		}
+	}
+
+	private void eagerLoadActorsFromMovie(Session session) {
+		session.clear();
+		Movie movie = session.get(Movie.class, 1L);//query fired here but without actors
+		System.out.println("Movie:"+movie.getTitle());
+		List<Actor> actors = movie.getActors();
+		for(Actor actor:actors) {//query for actors fired here, on first iteration of loop
+			System.out.println(actor.getName());
+		}
+	}
+
+	private void lazyLoadMoviesFromActor(Session session) {
+		session.clear();
+		Actor actor = session.load(Actor.class, 1L);//query not fired here
+		System.out.println("Actor:"+actor.getName());//query fired here but without movies
+		List<Movie> movies = actor.getMovies();
+		for(Movie movie:movies) {//query for movies fired here, on first iteration of loop
+			System.out.println(movie.getTitle());
+		}
+	}
+
+	private void lazyLoadActorsFromMovie(Session session) {
+		session.clear();
+		Movie movie = session.load(Movie.class, 1L);//query not fired here
+		System.out.println("Movie:"+movie.getTitle());//query fired here but without actors
+		List<Actor> actors = movie.getActors();
+		for(Actor actor:actors) {//query for actors fired here, on first iteration of loop
+			System.out.println(actor.getName());
+		}
 	}
 }

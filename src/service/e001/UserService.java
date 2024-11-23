@@ -35,12 +35,13 @@ public class UserService {
 	}
 
 	public void fetchUser(Session session) {
+		session.clear();
 		User user;
-		// using load() method
-		user = session.load(User.class, 1L);
+		//using get() method for eager load
+		user = session.get(User.class, 2L);//returns null if not found
 		System.out.println(user);
-		//using get() method
-		user = session.get(User.class, 2L);
+		// using load() method for lazy load
+		user = session.load(User.class, 1L);//returns ObjectNotFoundException if not found
 		System.out.println(user);
 	}
 
