@@ -3,7 +3,7 @@ package appmain;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import query.q01native.NativeQueryDemo;
+import query.q01native.NativeQueryExample;
 import service.e001.UserService;
 import service.e002onetoone.OneToOneService;
 import service.e003onetomany.OneToManyService;
@@ -35,7 +35,7 @@ public class HibernateAppMain {
 		userService.insertUser(session);
 		userService.fetchUser(session);
 		session.clear();
-		new NativeQueryDemo().fireNativeQueryForDemoForUser(session);
+		new NativeQueryExample().fireNativeQueryExampleForUser(session);
 		session.close();
 	}
 

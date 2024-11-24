@@ -6,9 +6,9 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.query.NativeQuery;
 
-public class NativeQueryDemo {
+public class NativeQueryExample {
 
-	public void fireNativeQueryForDemoForUser(Session session) {
+	public void fireNativeQueryExampleForUser(Session session) {
 		String query = "select * from user";
 		NativeQuery<Object[]> nativeQuery = session.createSQLQuery(query);
 
