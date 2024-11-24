@@ -4,6 +4,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import query.q01native.NativeQueryExample;
+import query.q02hql.HQLExample;
 import service.e001.UserService;
 import service.e002onetoone.OneToOneService;
 import service.e003onetomany.OneToManyService;
@@ -36,6 +37,7 @@ public class HibernateAppMain {
 		userService.fetchUser(session);
 		session.clear();
 		new NativeQueryExample().fireNativeQueryExampleForUser(session);
+		new HQLExample().fireHQLQueryExampleForUser(session);
 		session.close();
 	}
 
