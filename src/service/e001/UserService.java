@@ -12,15 +12,21 @@ import entity.e001.User;
 
 public class UserService {
 
+	public void seedUser(Session session, int count) {
+		for(int i=0; i<count; i++) {
+			User user = new User("UserEmail"+i, "userPassword"+i);
+			user.setDateOfCreation(new Date());
+			user.setAge(i);
+			user.setAddress(new Address("Noida", "U.P."+(i%2), "Sample_Landmark", 201301+(i%2)));
+			user.setProfilePic(getSampleImage());
+			Transaction transaction = session.beginTransaction();
+			session.save(user);
+			transaction.commit();
+		}
+	}
+
 	public void insertUser(Session session) {
-		User user = new User("Email_Sample", "pass_sample");
-		user.setDateOfCreation(new Date());
-		user.setAge(24);
-		user.setAddress(new Address("Noida", "U.P.", "Sample_Landmark", 201301));
-		user.setProfilePic(getSampleImage());
-		Transaction transaction = session.beginTransaction();
-		session.save(user);
-		transaction.commit();
+		seedUser(session, 1);
 	}
 
 	private byte[] getSampleImage() {
@@ -44,5 +50,4 @@ public class UserService {
 		user = session.load(User.class, 1L);//returns ObjectNotFoundException if not found
 		System.out.println(user);
 	}
-
 }
