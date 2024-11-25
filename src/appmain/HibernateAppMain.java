@@ -5,6 +5,7 @@ import org.hibernate.SessionFactory;
 
 import query.q01native.NativeQueryExample;
 import query.q02hql.HQLExample;
+import query.q02hql.HQLPagination;
 import service.e001.UserService;
 import service.e002onetoone.OneToOneService;
 import service.e003onetomany.OneToManyService;
@@ -34,10 +35,12 @@ public class HibernateAppMain {
 	private static void oneEntity(Session session) {
 		UserService userService = new UserService();
 		userService.insertUser(session);
+		userService.seedUser(session, 10);
 		userService.fetchUser(session);
 		session.clear();
 		new NativeQueryExample().fireNativeQueryExampleForUser(session);
 		new HQLExample().fireHQLQueryExampleForUser(session);
+		new HQLPagination().paginationExample(session);
 		session.close();
 	}
 
