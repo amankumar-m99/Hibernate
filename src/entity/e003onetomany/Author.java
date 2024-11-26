@@ -25,6 +25,7 @@ public class Author {
 	@Temporal(TemporalType.DATE)
 	private Date dateOfBirth;
 
+//	@OneToMany(mappedBy = "author", fetch = FetchType.EAGER)//Default is FetchType.LAZY
 	@OneToMany(mappedBy = "author")
 	private Set<Book> books;
 
