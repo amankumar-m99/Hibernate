@@ -27,6 +27,7 @@ public class OneToManyService {
 		Transaction transaction = session.beginTransaction();
 		session.save(authorA);
 		session.save(authorN);
+		//no need to save all the books explicitly if used cascading in Author entity
 		session.save(book1);
 		session.save(book2);
 		session.save(book3);

@@ -3,6 +3,7 @@ package entity.e003onetomany;
 import java.util.Date;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,6 +27,7 @@ public class Author {
 	private Date dateOfBirth;
 
 //	@OneToMany(mappedBy = "author", fetch = FetchType.EAGER)//Default is FetchType.LAZY
+//	@OneToMany(mappedBy = "author", cascade = CascadeType.ALL )//No related entity will be saved when saving this entity
 	@OneToMany(mappedBy = "author")
 	private Set<Book> books;
 
