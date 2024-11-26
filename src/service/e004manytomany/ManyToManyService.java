@@ -1,4 +1,4 @@
-package service.e004onetomany;
+package service.e004manytomany;
 
 import java.util.Arrays;
 import java.util.Date;

@@ -9,7 +9,7 @@ import query.q02hql.HQLPagination;
 import service.e001.UserService;
 import service.e002onetoone.OneToOneService;
 import service.e003onetomany.OneToManyService;
-import service.e004onetomany.ManyToManyService;
+import service.e004manytomany.ManyToManyService;
 import util.session.SessionFactoryProvider;
 
 public class HibernateAppMain {
