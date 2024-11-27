@@ -21,16 +21,16 @@
 		<property name="cache.region.factory_class">org.hibernate.cache.ehcache.internal.EhcacheRegionFactory</property>
 
 		<!-- mapping classes -->
+		<mapping class="entity.e001.User" />
 		<mapping class="entity.e002onetoone.Country" />
 		<mapping class="entity.e002onetoone.Capital" />
-		<!--
-		<mapping class="entity.e001.User" />
 		<mapping class="entity.e003onetomany.Author" />
 		<mapping class="entity.e003onetomany.Book" />
 		<mapping class="entity.e004manytomany.Actor" />
 		<mapping class="entity.e004manytomany.Movie" />
-		-->
+
 		<!-- mapping resources -->
 		<mapping resource="entity/e005xmlmapping/Person.hbm.xml"></mapping>
+
 	</session-factory>
 </hibernate-configuration>

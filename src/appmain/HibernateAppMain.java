@@ -23,6 +23,10 @@ public class HibernateAppMain {
 			Session currentSession = factory.getCurrentSession();
 			System.out.println(currentSession);
 			currentSession.close();
+
+			//uncomment one method a time to study better
+			//method start
+
 //			oneEntity(factory.openSession());
 //			oneToOneEntity(factory.openSession());
 //			oneToManyEntity(factory.openSession());
@@ -30,8 +34,11 @@ public class HibernateAppMain {
 //			showNativeQueries(factory.openSession());
 //			showHQLQuery(factory.openSession());
 //			showPaginationUsingHQL(factory.openSession());
-			showFirstLevelCaching(factory.openSession());
+//			showFirstLevelCaching(factory.openSession());
 //			showSecondLevelCaching(factory.openSession());
+
+			//method end
+
 			factory.close();
 		}
 		if(factory.isClosed()) {
