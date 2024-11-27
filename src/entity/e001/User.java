@@ -2,6 +2,7 @@ package entity.e001;
 
 import java.util.Date;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,8 +13,13 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 @Entity
 //@Table(name = "user_table")
+@Cacheable //for enabling second level caching
+@Cache(usage = CacheConcurrencyStrategy.READ_ONLY) //for enabling second level caching
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -3,6 +3,8 @@ package appmain;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import caching.firstlevel.FirstLevelCaching;
+import caching.secondlevel.SecondLevelCaching;
 import query.q01native.NativeQueryExample;
 import query.q02hql.HQLExample;
 import query.q02hql.HQLPagination;
@@ -20,11 +22,16 @@ public class HibernateAppMain {
 			System.out.println("Factory is open.");
 			Session currentSession = factory.getCurrentSession();
 			System.out.println(currentSession);
-			oneEntity(factory.openSession());
-			oneToOneEntity(factory.openSession());
-			oneToManyEntity(factory.openSession());
-			manyToManyEntity(factory.openSession());
 			currentSession.close();
+//			oneEntity(factory.openSession());
+//			oneToOneEntity(factory.openSession());
+//			oneToManyEntity(factory.openSession());
+//			manyToManyEntity(factory.openSession());
+//			showNativeQueries(factory.openSession());
+//			showHQLQuery(factory.openSession());
+//			showPaginationUsingHQL(factory.openSession());
+			showFirstLevelCaching(factory.openSession());
+//			showSecondLevelCaching(factory.openSession());
 			factory.close();
 		}
 		if(factory.isClosed()) {
@@ -35,12 +42,7 @@ public class HibernateAppMain {
 	private static void oneEntity(Session session) {
 		UserService userService = new UserService();
 		userService.insertUser(session);
-		userService.seedUser(session, 10);
 		userService.fetchUser(session);
-		session.clear();
-		new NativeQueryExample().fireNativeQueryExampleForUser(session);
-		new HQLExample().fireHQLQueryExampleForUser(session);
-		new HQLPagination().paginationExample(session);
 		session.close();
 	}
 
@@ -63,5 +65,43 @@ public class HibernateAppMain {
 		manyToManyService.insertManyToManyEntity(session);
 		manyToManyService.fetchManyToManyEntity(session);
 		session.close();
+	}
+
+	private static void showNativeQueries(Session session) {
+		UserService userService = new UserService();
+		userService.seedUser(session, 10);
+		session.clear();
+		new NativeQueryExample().fireNativeQueryExampleForUser(session);
+		session.close();
+	}
+
+	private static void showHQLQuery(Session session){
+		UserService userService = new UserService();
+		userService.seedUser(session, 10);
+		session.clear();
+		new HQLExample().fireHQLQueryExampleForUser(session);
+		session.close();
+	}
+
+	private static void showPaginationUsingHQL(Session session) {
+		UserService userService = new UserService();
+		userService.seedUser(session, 10);
+		session.clear();
+		new HQLPagination().paginationExample(session);
+		session.close();
+	}
+
+	private static void showFirstLevelCaching(Session session) {
+		OneToOneService oneToOneService = new OneToOneService();
+		oneToOneService.insertOneToOneEntity(session);//to seed some data beforehand
+		session.close();
+		new FirstLevelCaching().showFirstLevelCaching();
+	}
+
+	private static void showSecondLevelCaching(Session session) {
+		UserService userService = new UserService();
+		userService.seedUser(session, 10);
+		session.close();
+		new SecondLevelCaching().showSecondLevelCaching();
 	}
 }
