@@ -1,5 +1,6 @@
 package entity.e001;
 
+import java.util.Arrays;
 import java.util.Date;
 
 import javax.persistence.Cacheable;
@@ -106,8 +107,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", email=" + email + ", password=" + password + ", dateOfCreation=" + dateOfCreation
-				+ "]";
+		return "User [id=" + id + ", email=" + email + ", password=" + password + ", age=" + age + ", address="
+				+ address + ", dateOfCreation=" + dateOfCreation + "]";
 	}
-
 }
