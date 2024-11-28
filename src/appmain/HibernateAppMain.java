@@ -8,6 +8,7 @@ import caching.secondlevel.SecondLevelCaching;
 import query.q01native.NativeQueryExample;
 import query.q02hql.HQLExample;
 import query.q02hql.HQLPagination;
+import query.q03criteriaapi.CriteriaAPIExample;
 import service.e001.UserService;
 import service.e002onetoone.OneToOneService;
 import service.e003onetomany.OneToManyService;
@@ -36,6 +37,7 @@ public class HibernateAppMain {
 //			showPaginationUsingHQL(factory.openSession());
 //			showFirstLevelCaching(factory.openSession());
 //			showSecondLevelCaching(factory.openSession());
+//			new CriteriaAPIExample().showExample();
 
 			//method end
 
